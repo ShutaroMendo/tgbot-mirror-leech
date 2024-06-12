@@ -230,7 +230,7 @@
 - Clone this repo:
 
 ```
-git clone https://github.com/weebzone/WZML-X mirrorbot/ && cd mirrorbot
+git clone https://github.com/Jhon-Wilmer-JK/tgbot-mirror-leech tg_mirrorbot/ && cd tg_mirrorbot
 ```
 
 - For Debian based distros
@@ -293,13 +293,13 @@ sudo dockerd
 - Build Docker image:
 
 ```
-sudo docker build . -t wzmlx
+sudo docker build . -t tg_mrror
 ```
 
 - Run the image:
 
 ```
-sudo docker run -p 80:80 -p 8080:8080 wzmlx
+sudo docker run -p 80:80 -p 8080:8080 tg_mrror
 ```
 
 - To stop the running image:
