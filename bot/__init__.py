@@ -553,21 +553,23 @@ if len(IMDB_TEMPLATE) == 0:
 
 ANIME_TEMPLATE = environ.get('ANIME_TEMPLATE', '')
 if len(ANIME_TEMPLATE) == 0:
-    ANIME_TEMPLATE = '''<b>{ro_title}</b>({na_title})
-<b>Format</b>: <code>{format}</code>
-<b>Status</b>: <code>{status}</code>
-<b>Start Date</b>: <code>{startdate}</code>
-<b>End Date</b>: <code>{enddate}</code>
-<b>Season</b>: <code>{season}</code>
-<b>Country</b>: {country}
-<b>Episodes</b>: <code>{episodes}</code>
-<b>Duration</b>: <code>{duration}</code>
-<b>Average Score</b>: <code>{avgscore}</code>
-<b>Genres</b>: {genres}
-<b>Hashtag</b>: {hashtag}
-<b>Studios</b>: {studios}
+    ANIME_TEMPLATE = '''㊙️ ❘ <b>Título:</b> {ro_title}
+🏦 ❘ <b>Estudio/s:</b> {studios}
+📆 ❘ <b>Año:</b> {startdate_es}
+🗂 ❘ <b>Episodios:</b> {episodes}
+🎧 ❘ <b>Audio:</b> Japonés (AAC)
+💬 ❘ <b>Subtitulos:</b> SubEspañol
+🏷 ❘ <b>Género:</b> {genres}
+⏱ ❘ <b>Duración:</b> {duration}
+📐 ❘ <b>Resolución:</b> 720p WEB-DL
+💽 ❘ <b>Formato:</b> MP4 H264
+📇 ❘ <b>Fansub:</b>
+🔅 ❘ <b>Temporada:</b> {season_es}
+▶️ ❘ <b>Encoder/Uploader:</b> @Yaichi_Anime
+⏳ ❘ <b>Estado:</b> {status_es}
+📜 ❘ <b>Sinopsis:</b> {description_es}
 
-<b>Description</b>: <i>{description}</i>'''
+{hashtag}'''
 
 MDL_TEMPLATE = environ.get('MDL_TEMPLATE', '')
 if len(MDL_TEMPLATE) == 0:
