@@ -293,13 +293,13 @@ sudo dockerd
 - Build Docker image:
 
 ```
-sudo docker build . -t tg_mrror
+sudo docker build . -t tg_mirror
 ```
 
 - Run the image:
 
 ```
-sudo docker run -p 80:80 -p 8080:8080 tg_mrror
+sudo docker run -p 80:80 -p 8080:8080 tg_mirror &
 ```
 
 - To stop the running image:
