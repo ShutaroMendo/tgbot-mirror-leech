@@ -6,6 +6,7 @@ from datetime import datetime
 from calendar import month_name
 from pycountry import countries as conn
 from urllib.parse import quote as q
+from translate import Translator
 
 from bot import bot, LOGGER, config_dict, user_data
 from bot.helper.telegram_helper.filters import CustomFilters
@@ -15,6 +16,7 @@ from bot.helper.telegram_helper.button_build import ButtonMaker
 from bot.helper.ext_utils.bot_utils import get_readable_time
 from pyrogram.handlers import MessageHandler, CallbackQueryHandler
 from pyrogram.filters import command, regex
+import logging
 
 
 GENRES_EMOJI = {"Action": "👊", "Adventure": choice(['🪂', '🧗‍♀']), "Comedy": "🤣", "Drama": " 🎭", "Ecchi": choice(['💋', '🥵']), "Fantasy": choice(['🧞', '🧞‍♂', '🧞‍♀','🌗']), "Hentai": "🔞", "Horror": "☠", "Mahou Shoujo": "☯", "Mecha": "🤖", "Music": "🎸", "Mystery": "🔮", "Psychological": "♟", "Romance": "💞", "Sci-Fi": "🛸", "Slice of Life": choice(['☘','🍁']), "Sports": "⚽️", "Supernatural": "🫧", "Thriller": choice(['🥶', '🔪','🤯'])}
@@ -197,6 +199,8 @@ url = 'https://graphql.anilist.co'
 sptext = ""
 
 async def anilist(_, msg, aniid=None, u_id=None):
+    translator = Translator(to_lang="es")  # Crear una instancia del traductor
+
     if not aniid:
         user_id = msg.from_user.id
         squery = (msg.text).split(' ', 1)
@@ -255,9 +259,13 @@ async def anilist(_, msg, aniid=None, u_id=None):
         if trailer and trailer.get('site') == "youtube":
             trailer = f"https://youtu.be/{trailer.get('id')}"
         postup = datetime.fromtimestamp(animeResp['updatedAt']).strftime('%d %B, %Y')
+        description_c = animeResp.get('description', 'N/A')
         description = animeResp.get('description', 'N/A')
+        #logging.info(f">>>>---{description}")
         if len(description) > 500:  
-            description = f"{description[:500]}...."
+            description_c = f"{description[:497]}..."
+            description = f"{description[:497]}..."
+        #logging.info(f">>>>---{description_c}")
         popularity = animeResp['popularity'] or ''
         trending = animeResp['trending'] or ''
         favourites = animeResp['favourites'] or ''
@@ -265,6 +273,18 @@ async def anilist(_, msg, aniid=None, u_id=None):
         bannerimg = animeResp['bannerImage'] or ''
         coverimg = animeResp['coverImage']['large'] or ''
         title_img = f"https://img.anili.st/media/{siteid}"
+
+        # Traducir la información al español, asegurando que no sean None
+        startdate_es = translator.translate(startdate) if startdate else ''
+        season_es = translator.translate(season) if season else ''
+        status_es = translator.translate(status) if status else ''
+        description_es = translator.translate(description_c) if description_c else ''
+        #logging.info("-----------")
+        #logging.info(startdate_es)
+        #logging.info(season_es)
+        #logging.info(status_es)
+        #logging.info(description_es)
+        #logging.info("---------")
         btns = ButtonMaker()
         btns.ubutton("AniList Info 🎬", siteurl, 'header')
         btns.ibutton("Reviews 📑", f"anime {user_id} rev {siteid}")
@@ -280,6 +300,7 @@ async def anilist(_, msg, aniid=None, u_id=None):
         if not aniListTemp:
             aniListTemp = config_dict['ANIME_TEMPLATE']
         try:
+            # Usar las variables traducidas en el formato del template
             template = aniListTemp.format(**locals()).replace('<br>', '')
         except Exception as e:
             template = config_dict['ANIME_TEMPLATE']
