@@ -563,9 +563,7 @@ if len(ANIME_TEMPLATE) == 0:
 ⏱ ❘ <b>Duración:</b> {duration}
 📐 ❘ <b>Resolución:</b> 720p WEB-DL
 💽 ❘ <b>Formato:</b> MP4 H264
-📇 ❘ <b>Fansub:</b>
 🔅 ❘ <b>Temporada:</b> {season_es}
-▶️ ❘ <b>Encoder/Uploader:</b> @Yaichi_Anime
 ⏳ ❘ <b>Estado:</b> {status_es}
 📜 ❘ <b>Sinopsis:</b> {description_es}
 
