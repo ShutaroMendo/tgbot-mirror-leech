@@ -230,7 +230,7 @@
 - Clone this repo:
 
 ```
-git clone https://github.com/Jhon-Wilmer-JK/tgbot-mirror-leech tg_mirrorbot/ && cd tg_mirrorbot
+git clone https://github.com/ShutaroMendo/tgbot-mirror-leech tg_mirrorbot/ && cd tg_mirrorbot
 ```
 
 - For Debian based distros
